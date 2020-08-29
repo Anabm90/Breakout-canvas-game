@@ -14,12 +14,11 @@ class Paddle {
         this.canvasSize = canvasSize  
     }
 
-    //init(){}
-
-    draw(){
+    draw() {
+        
         this.ctx.fillStyle = 'black'
         this.ctx.fillRect(this.paddlePos.x, this.paddlePos.y, this.paddleSize.w, this.paddleSize.h)
-        //console.log("HOLAAAA")
+      
         this.movePaddle()
     }
     
