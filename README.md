@@ -11,9 +11,10 @@ PREGUNTAR
 
 POR HACER
 
-- Colisión ball-bricks.
+- Colisión ball-bricks
+- Remover bricks
 - Vidas
-- Game over.
+- Game over
 - Score
 
 MEJORAR
