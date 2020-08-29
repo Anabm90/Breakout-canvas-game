@@ -29,6 +29,7 @@ const breakOutGame = {
         w:25,
         h: 5
     },
+    brick: undefined,
 
 
 
@@ -85,7 +86,7 @@ const breakOutGame = {
 
         this.paddle = new Paddle(this.ctx, centerX, centerY, this.paddleSize.w, this.paddleSize.h, this.canvasSize)
         this.ball = new Ball(this.ctx, centerX + (this.paddleSize.w / 2), this.canvasSize.h / 2, this.ballSize.w, this.ballSize.h, this.canvasSize)
-        //this.brick = new Brick(this.ctx, this.canvasSize)
+        this.brick = new Brick(this.ctx, 50, 50, 100, 100, this.canvasSize)
         
     },
 
@@ -95,7 +96,8 @@ const breakOutGame = {
         this.drawBackground()
         this.paddle.draw()
         this.ball.draw()
-        
+        this.brick.draw()
+
     },
 
 
