@@ -6,6 +6,7 @@ const breakOutGame = {
     description: 'Proyecto 1, Canvas game',
     canvasId: undefined,
     ctx: undefined,
+    FPS: 60,
     canvasSize: {
         w: undefined,
         h: undefined
@@ -19,17 +20,16 @@ const breakOutGame = {
         w: 200,
         h: 30
     },
-    // paddlePos : {
-    //     x: (canvasSize.w/2) - (paddleSize.w / 2),
-    //     y: (canvasSize.h - 100)
-    // },
+    paddlePos : {
+        x: undefined,
+        y: undefined
+    },
     ball: undefined, 
     ballSize : {
         w:25,
         h: 5
     },
 
-    frame: 0,
 
 
     init(id){
@@ -66,25 +66,32 @@ const breakOutGame = {
         this.reset()
 
         this.interval = setInterval(() => {
+
+        
             this.clearScreen()
             this.drawAll()
+            this.isCollision()
             
-         }, 100)
+         }, 50 )
         
     },
 
 
     reset() {
+
         this.drawBackground()
-        const centerX = (this.canvasSize.w/2) - (this.paddleSize.w / 2)
+        const centerX = (this.canvasSize.w / 2) - (this.paddleSize.w / 2)
         const centerY = (this.canvasSize.h - 100)
-        this.paddle = new Paddle(this.ctx, centerX,centerY, this.paddleSize.w, this.paddleSize.h, this.canvasSize)
-        this.ball = new Ball (this.ctx, centerX, this.canvasSize.h/2, this.ballSize.w, this.ballSize.h, this.canvasSize)
+
+        this.paddle = new Paddle(this.ctx, centerX, centerY, this.paddleSize.w, this.paddleSize.h, this.canvasSize)
+        this.ball = new Ball(this.ctx, centerX + (this.paddleSize.w / 2), this.canvasSize.h / 2, this.ballSize.w, this.ballSize.h, this.canvasSize)
+        //this.brick = new Brick(this.ctx, this.canvasSize)
         
     },
 
 
-    drawAll(){
+    drawAll() {
+        
         this.drawBackground()
         this.paddle.draw()
         this.ball.draw()
@@ -97,28 +104,24 @@ const breakOutGame = {
         this.ctx.fillRect(0,0, this.canvasSize.w, this.canvasSize.h)
     },
 
-
-    // drawPaddle(){
-    //     const centerPaddleX = (this.canvasSize.w/2) - (this.paddleSize.w / 2)
-    //     const centerPaddleY = (this.canvasSize.h - 100)
-    //     this.paddle = new Paddle(this.ctx, centerPaddleX ,centerPaddleY, this.paddleSize.w, this.paddleSize.h, this.canvasSize) 
-    //     //this.paddle.draw()
-    //     //console.log(this.paddle)
-    //     this.interval = setInterval(() => {
-    //         // this.drawBackground()
-    //         this.frame++
-    //         this.clearScreen()
-    //         this.drawBackground()
-    //         this.paddle.draw()
-
-    //     }, 100)
-
-  
-
-
     clearScreen() {
         this.ctx.clearRect(0, 0, this.canvasSize.w, this.canvasSize.h);
-      },
+    },
 
+    isCollision() {
+
+        if (this.ball.ballPos.y + this.ball.ballRadius >= this.paddle.paddlePos.y &&
+            this.ball.ballPos.x > this.paddle.paddlePos.x &&
+            this.ball.ballPos.x <= this.paddle.paddlePos.x + this.paddle.paddleSize.w) {
+                
+                 this.ball.ballVel.y *= -1
+
+        } else {
+
+            null
+
+        }
+
+    }
 
 }
