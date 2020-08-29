@@ -9,6 +9,13 @@ PREGUNTAR
 - Tenemos un pequeño scroll.
 - Las clases en distintos files, pueden acceder a las propiedades y métodos de otras clases, si las pasamos como párametros?
 
+POR HACER
+
+- Colisión ball-bricks.
+- Vidas
+- Game over.
+- Score
+
 MEJORAR
 
 - Background
